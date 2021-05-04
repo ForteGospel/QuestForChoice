@@ -70,6 +70,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected void OnDrawGizmos()
     {
-        Gizmos.DrawLine(patrolingPoints[0], patrolingPoints[1]);
+        if(patrolingPoints.Length == 0)
+            Gizmos.DrawLine(patrolingPoints[0], patrolingPoints[1]);
     }
 }

@@ -189,6 +189,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95088ca29ac7ecc41bd6bc1a493653df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 150
+  movementSpeed: 350
   enemyState: 1
   patrolingPoints: []
+  child: {fileID: 0}
+  isKilledBool: 0

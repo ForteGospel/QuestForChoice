@@ -54,4 +54,10 @@ public class snakePlatform : Platform
                 Destroy(child.gameObject);
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        for (int i = 1; i < childPoints.Length; i++)
+            Gizmos.DrawLine(childPoints[i - 1].position, childPoints[i].position);
+    }
 }

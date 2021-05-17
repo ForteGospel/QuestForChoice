@@ -34,4 +34,12 @@ public class LoopMovingPlatform : Platform
 
         transform.position = Vector3.MoveTowards(transform.position, nextDestination, platformSpeed / 100);
     }
+
+    private void OnDrawGizmos()
+    {
+        for (int i = 1; i < childPoints.Length; i++)
+            Gizmos.DrawLine(childPoints[i - 1].position, childPoints[i].position);
+
+        Gizmos.DrawLine(childPoints[0].position, childPoints[childPoints.Length - 1].position);
+    }
 }

@@ -18,12 +18,15 @@ public class Playermovment : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    private void Update()
     {
         if (Input.GetButtonDown("Jump") && Grounded == true)
             Jump();
+    }
 
+    // Update is called once per frame
+    void FixedUpdate()
+    {
         if (Input.GetAxis("Horizontal") != 0f)
             Move();
     }

@@ -1,0 +1,37 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class LoopMovingPlatform : Platform
+{
+    [SerializeField]
+    Transform[] childPoints;
+    Vector2 nextDestination;
+    int currChild = 1;
+
+    [SerializeField]
+    float platformSpeed = 2f;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        nextDestination = childPoints[1].position;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        moveTowardsDestination();
+    }
+
+    void moveTowardsDestination()
+    {
+        if (Vector2.Distance(transform.position, nextDestination) < 0.5f)
+        {
+            currChild = (currChild + 1) % childPoints.Length;
+            nextDestination = childPoints[currChild].position;
+        }
+
+        transform.position = Vector3.MoveTowards(transform.position, nextDestination, platformSpeed / 100);
+    }
+}

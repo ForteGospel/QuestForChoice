@@ -27,7 +27,7 @@ public abstract class Enemy : MonoBehaviour
 
     }
 
-    protected void moveTowardsDestination()
+    protected virtual void moveTowardsDestination()
     {
         if (Vector2.Distance(transform.position, patrolingPoints[0]) < 0.5f)
         {

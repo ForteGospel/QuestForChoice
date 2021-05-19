@@ -12,9 +12,13 @@ public class snakePlatform : Platform
     [SerializeField]
     float platformSpeed = 2f;
 
+    [SerializeField]
+    GameObject line;
+
     // Start is called before the first frame update
     void Start()
     {
+        drawLine();
         nextDestination = childPoints[1].position;
     }
 
@@ -59,5 +63,13 @@ public class snakePlatform : Platform
     {
         for (int i = 1; i < childPoints.Length; i++)
             Gizmos.DrawLine(childPoints[i - 1].position, childPoints[i].position);
+    }
+
+    void drawLine()
+    {
+        LineRenderer lineRender = line.GetComponent<LineRenderer>();
+        lineRender.positionCount = childPoints.Length;
+        for (int i = 0; i < childPoints.Length; i++)
+            lineRender.SetPosition(i, childPoints[i].position);
     }
 }

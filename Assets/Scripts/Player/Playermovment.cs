@@ -9,8 +9,19 @@ public class Playermovment : MonoBehaviour
 
     public bool Grounded = false;
 
+    PlayerState playerState = PlayerState.Playable;
+
     Vector3 m_velocity = Vector3.zero;
 
+    [SerializeField]
+    Collider2D TriggerCollider;
+
+    [SerializeField]
+    Color flashColor;
+    Color regularColor = Color.white;
+
+    [SerializeField]
+    int numberOfFlashes = 4;
 
     // Start is called before the first frame update
     void Start()
@@ -20,15 +31,21 @@ public class Playermovment : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Jump") && Grounded == true)
-            Jump();
+        if (playerState == PlayerState.Playable)
+        {
+            if (Input.GetButtonDown("Jump") && Grounded == true)
+                Jump();
+        }   
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetAxis("Horizontal") != 0f)
-            Move();
+        if (playerState == PlayerState.Playable)
+        {
+            if (Input.GetAxis("Horizontal") != 0f)
+                Move();
+        }
     }
 
     void Jump()
@@ -51,5 +68,36 @@ public class Playermovment : MonoBehaviour
             transform.localScale = new Vector3(-1f, 1f, 1f);
     }
 
+    public void getHit(Transform other)
+    {
+        gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
+        Vector2 knockbackDirection = new Vector2(transform.position.x - other.position.x, 1f).normalized;
+
+        gameObject.GetComponent<Rigidbody2D>().AddForce(knockbackDirection * 5, ForceMode2D.Impulse);
+
+        StartCoroutine(knockBack());
+    }
+
+    IEnumerator knockBack()
+    {
+        TriggerCollider.enabled = false;
+        playerState = PlayerState.UnPlayable;
+        Transform child = gameObject.transform.Find("GFX");
+        for(int i = 0; i < numberOfFlashes; i++)
+        {
+            child.GetComponent<SpriteRenderer>().color = flashColor;
+            yield return new WaitForSeconds(0.1f);
+            child.GetComponent<SpriteRenderer>().color = regularColor;
+            yield return new WaitForSeconds(0.1f);
+        }
+        playerState = PlayerState.Playable;
+        TriggerCollider.enabled = true;
+    }
+}
+
+public enum PlayerState
+{
+    Playable,
+    UnPlayable
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2313417431606922421}
   - component: {fileID: 4016571708577569616}
   - component: {fileID: 7203154302858494687}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bounty
   m_TagString: Untagged
   m_Icon: {fileID: 0}

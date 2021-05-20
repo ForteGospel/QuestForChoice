@@ -11,7 +11,7 @@ public abstract class Enemy : MonoBehaviour
     public EnemyStates enemyState = EnemyStates.patroling;
     [SerializeField]protected Vector3[] patrolingPoints;
     protected Vector3 nextDestinationPoint;
-    protected Vector2 direction;
+    protected float direction;
     protected int currentPoint = 0;
     protected bool goingForwards = true;
 
@@ -38,14 +38,14 @@ public abstract class Enemy : MonoBehaviour
             nextDestinationPoint = patrolingPoints[0];
         }
 
-        direction = new Vector2(transform.position.x <= nextDestinationPoint.x ? 1f : -1f, 0f);
+        direction = transform.position.x <= nextDestinationPoint.x ? 1f : -1f;
 
-        gameObject.GetComponent<Rigidbody2D>().velocity = direction * movementSpeed * Time.deltaTime;
+        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(direction * movementSpeed * Time.deltaTime, gameObject.GetComponent<Rigidbody2D>().velocity.y);
     }
 
     protected void flipSprite()
     {
-        if (direction.x == 1f)
+        if (direction == 1f)
             transform.localScale = new Vector3(1f, 1f, 1f);
         else
             transform.localScale = new Vector3(-1f, 1f, 1f);

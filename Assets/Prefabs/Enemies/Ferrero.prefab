@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 6668157353921687150}
   - component: {fileID: 6668157353921687137}
   - component: {fileID: 6668157353921687136}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ferrero
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 7492518634886814043}
   - component: {fileID: 7737769779126717689}
   - component: {fileID: 2970104272462851062}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Twix
   m_TagString: Untagged
   m_Icon: {fileID: 0}

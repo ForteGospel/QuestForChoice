@@ -23,10 +23,17 @@ public class Playermovment : MonoBehaviour
     [SerializeField]
     int numberOfFlashes = 4;
 
+    [SerializeField]
+    LayerMask layerMask;
+
+    [SerializeField]
+    playerStats playerStats;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerStats.player = gameObject;
+        playerStats.health = 3;
     }
 
     private void Update()
@@ -70,13 +77,21 @@ public class Playermovment : MonoBehaviour
 
     public void getHit(Transform other)
     {
-        gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        playerStats.health--;
+        if (playerStats.health != 0)
+        {
+            gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
-        Vector2 knockbackDirection = new Vector2(transform.position.x - other.position.x, 1f).normalized;
+            Vector2 knockbackDirection = new Vector2(transform.position.x - other.position.x, 1f).normalized;
 
-        gameObject.GetComponent<Rigidbody2D>().AddForce(knockbackDirection * 5, ForceMode2D.Impulse);
+            gameObject.GetComponent<Rigidbody2D>().AddForce(knockbackDirection * 5, ForceMode2D.Impulse);
 
-        StartCoroutine(knockBack());
+            StartCoroutine(knockBack());
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     IEnumerator knockBack()
@@ -93,6 +108,12 @@ public class Playermovment : MonoBehaviour
         }
         playerState = PlayerState.Playable;
         TriggerCollider.enabled = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if ((layerMask.value & (1 << collision.gameObject.layer)) > 0  && playerState == PlayerState.Playable)
+            getHit(collision.transform);
     }
 }
 

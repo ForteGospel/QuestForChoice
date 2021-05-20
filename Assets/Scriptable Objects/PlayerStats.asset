@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  health: 3
+  health: 0

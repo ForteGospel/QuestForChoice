@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOneWay: 1
-  platformSpeed: 2
+  isDisappearing: 1
+  timeToDisappear: 2
+  platformSpeed: 3
   xDirection: 1
   yDirection: 0
   multiplaier: 20

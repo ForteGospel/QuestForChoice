@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8373215978174109059}
   - component: {fileID: 4343258843772898080}
   - component: {fileID: 9122942896951973551}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mini Twix
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,5 +192,12 @@ MonoBehaviour:
   movementSpeed: 350
   enemyState: 1
   patrolingPoints: []
+  destroyEffect: {fileID: 194062, guid: 8c27aeead6d968e4ba986702d6b84335, type: 3}
+  viewPoint: {fileID: 0}
+  viewPointX: 1
+  viewPointY: 1
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
   child: {fileID: 0}
   isKilledBool: 0

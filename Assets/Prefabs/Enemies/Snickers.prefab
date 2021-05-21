@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 2217569833307437483}
   - component: {fileID: 2217569833307437482}
   - component: {fileID: 2217569833307437481}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Snickers
   m_TagString: Untagged
   m_Icon: {fileID: 0}

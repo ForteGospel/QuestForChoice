@@ -16,8 +16,6 @@ public class weaponshoot : MonoBehaviour
         
     }
 
-
-
     private void Update()
     {
         Vector3 diffrence = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
@@ -38,18 +36,9 @@ public class weaponshoot : MonoBehaviour
                 timeBtwShots = startTimeBtwShots;
             }
         }
-
-        else{
+        else
+        {
             timeBtwShots -= Time.deltaTime;
         }
-
-
     }
-
-
-
-
-
-
-
 }

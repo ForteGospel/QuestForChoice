@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3565679987269275801}
   - component: {fileID: 3565679987269275798}
   m_Layer: 8
-  m_Name: Platform
+  m_Name: OneWayPlatForm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_AdaptiveUV: 1
   m_StretchUV: 0
   m_WorldSpaceUV: 0
-  m_CornerAngleThreshold: 30
+  m_CornerAngleThreshold: 0
   m_ColliderDetail: 16
   m_ColliderOffset: 0.43
   m_UpdateCollider: 1
@@ -182,3 +182,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be65f82daccfdc24ebb70b9e30093d60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOneWay: 1
+  isDisappearing: 0
+  timeToDisappear: 2

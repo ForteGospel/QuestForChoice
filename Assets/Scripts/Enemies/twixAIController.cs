@@ -49,7 +49,7 @@ public class twixAIController : Enemy
 
     protected void moveTowardsPlayer()
     {
-        direction = new Vector2(transform.position.x <= player.transform.position.x ? 1f : -1f, 0f);
-        gameObject.GetComponent<Rigidbody2D>().velocity = direction * movementSpeed * Time.deltaTime;
+        direction = transform.position.x <= player.transform.position.x ? 1f : -1f;
+        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2 (direction * movementSpeed * Time.deltaTime, gameObject.GetComponent<Rigidbody2D>().velocity.y);
     }
 }

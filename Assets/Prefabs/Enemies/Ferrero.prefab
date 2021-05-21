@@ -91,9 +91,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6668157353921687148}
   - component: {fileID: 6668157353921687151}
+  - component: {fileID: 6668157353921687136}
   - component: {fileID: 6668157353921687150}
   - component: {fileID: 6668157353921687137}
-  - component: {fileID: 6668157353921687136}
   m_Layer: 10
   m_Name: Ferrero
   m_TagString: Untagged
@@ -137,6 +137,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &6668157353921687136
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6668157353921687139}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.43
 --- !u!114 &6668157353921687150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,21 +182,12 @@ MonoBehaviour:
   movementSpeed: 300
   enemyState: 1
   patrolingPoints: []
+  destroyEffect: {fileID: 194062, guid: 8c27aeead6d968e4ba986702d6b84335, type: 3}
+  viewPoint: {fileID: 0}
+  viewPointX: 1
+  viewPointY: 1
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
   child: {fileID: 0}
   isKilledBool: 0
---- !u!58 &6668157353921687136
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6668157353921687139}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.43

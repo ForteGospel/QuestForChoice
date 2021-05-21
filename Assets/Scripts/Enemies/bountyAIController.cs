@@ -16,6 +16,7 @@ public class bountyAIController : Enemy
     // Update is called once per frame
     void Update()
     {
+        checkForViewPoint();
         if (enemyState == EnemyStates.patroling)
         {
             moveTowardsDestination();

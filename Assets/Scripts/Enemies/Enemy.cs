@@ -6,14 +6,32 @@ using UnityEngine;
 [RequireComponent(typeof(HealthController))]
 public abstract class Enemy : MonoBehaviour
 {
-    [SerializeField] protected float movementSpeed = 150;
+    [SerializeField]
+    protected float movementSpeed = 150;
     protected GameObject player;
     public EnemyStates enemyState = EnemyStates.patroling;
-    [SerializeField]protected Vector3[] patrolingPoints;
+
+    [SerializeField]
+    protected Vector3[] patrolingPoints;
     protected Vector3 nextDestinationPoint;
     protected float direction;
     protected int currentPoint = 0;
     protected bool goingForwards = true;
+
+    [SerializeField]
+    protected GameObject destroyEffect;
+
+    [Header("view range")]
+    [SerializeField]
+    protected GameObject viewPoint;
+    [SerializeField]
+    [Range(1, 6)]
+    protected float viewPointX = 1;
+    [SerializeField]
+    [Range(1, 6)]
+    protected float viewPointY = 1;
+    [SerializeField]
+    protected LayerMask playerLayer;
 
     // Start is called before the first frame update
     void Start()
@@ -51,18 +69,16 @@ public abstract class Enemy : MonoBehaviour
             transform.localScale = new Vector3(-1f, 1f, 1f);
     }
 
-    protected void OnTriggerEnter2D(Collider2D collision)
+    protected void checkForViewPoint()
     {
-        if (collision.transform.tag == "Player")
+        Collider2D playerCollider = Physics2D.OverlapBox(viewPoint.transform.position, new Vector2(viewPointX, viewPointY), 0, playerLayer);
+
+        if (playerCollider)
         {
             enemyState = EnemyStates.alerted;
-            player = collision.gameObject;
+            player = playerCollider.gameObject;
         }
-    }
-
-    protected void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.transform.tag == "Player")
+        else
         {
             enemyState = EnemyStates.patroling;
         }
@@ -72,5 +88,14 @@ public abstract class Enemy : MonoBehaviour
     {
         if(patrolingPoints.Length != 0)
             Gizmos.DrawLine(patrolingPoints[0], patrolingPoints[1]);
+
+        if (viewPoint)
+            Gizmos.DrawWireCube(viewPoint.transform.position, new Vector3(viewPointX, viewPointY, 1));
+    }
+
+    protected void destroyObject()
+    {
+        Instantiate(destroyEffect, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 }

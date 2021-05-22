@@ -176,7 +176,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  deathEffect: {fileID: 0}
+  projectileLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  deathEffect: {fileID: 194062, guid: 8c27aeead6d968e4ba986702d6b84335, type: 3}
 --- !u!114 &9122942896951973551
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -80,7 +80,7 @@ PrefabInstance:
     - target: {fileID: 3565679987269275804, guid: fd37b0576b56ea94a867f3bd0af15ced,
         type: 3}
       propertyPath: m_Name
-      value: Disappearing
+      value: Disappearing Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd37b0576b56ea94a867f3bd0af15ced, type: 3}

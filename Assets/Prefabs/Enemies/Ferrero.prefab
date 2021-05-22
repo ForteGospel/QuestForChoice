@@ -166,7 +166,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  deathEffect: {fileID: 0}
+  projectileLayer:
+    serializedVersion: 2
+    m_Bits: 8192
+  deathEffect: {fileID: 194062, guid: 8c27aeead6d968e4ba986702d6b84335, type: 3}
 --- !u!114 &6668157353921687137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,3 +194,5 @@ MonoBehaviour:
     m_Bits: 0
   child: {fileID: 0}
   isKilledBool: 0
+  playerStats: {fileID: 11400000, guid: a8604d9ee546fc642aaa2dad37f92539, type: 2}
+  distanceToActivate: 11

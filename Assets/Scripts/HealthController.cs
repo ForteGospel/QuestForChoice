@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class HealthController : MonoBehaviour
 {
-    [SerializeField] int health = 100;
-    [SerializeField] GameObject deathEffect;
+    [SerializeField]
+    int health = 100;
+
+    [SerializeField]
+    GameObject deathEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -19,14 +22,11 @@ public class HealthController : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void getHit(int Damage)
     {
-        if(collision.transform.tag == "Projectile")
-        {
-            //health -= collision.transform.GetComponent<ProjectileController>().damage;
-        }
+        health -= Damage;
 
-        if(health <= 0)
+        if (health <= 0)
         {
             Instantiate(deathEffect, transform.position, transform.rotation);
             Destroy(gameObject);

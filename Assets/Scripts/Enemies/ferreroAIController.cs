@@ -22,6 +22,6 @@ public class ferreroAIController : twixAIController
 
     private new void OnDrawGizmos()
     {
-        
+        Gizmos.DrawWireSphere(transform.position, distanceToActivate);
     }
 }

@@ -24,7 +24,10 @@ public class Playermovment : MonoBehaviour
     int numberOfFlashes = 4;
 
     [SerializeField]
-    LayerMask layerMask;
+    LayerMask enemiesMask;
+
+    [SerializeField]
+    LayerMask tokenMask;
 
     [SerializeField]
     playerStats playerStats;
@@ -112,8 +115,11 @@ public class Playermovment : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if ((layerMask.value & (1 << collision.gameObject.layer)) > 0  && playerState == PlayerState.Playable)
+        if ((enemiesMask.value & (1 << collision.gameObject.layer)) > 0)
             getHit(collision.transform);
+
+        if ((tokenMask.value & (1 << collision.gameObject.layer)) > 0)
+            collision.GetComponent<tokenController>().getToken();
     }
 }
 

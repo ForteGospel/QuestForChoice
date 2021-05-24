@@ -23,10 +23,10 @@ public class weaponshoot : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
 
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            Instantiate(projectile, shotPoint.position, transform.rotation);
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    Instantiate(projectile, shotPoint.position, transform.rotation);
+        //}
 
         if (timeBtwShots <= 0)
         {

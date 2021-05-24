@@ -12,6 +12,14 @@ public class projectileController : MonoBehaviour
     float speed;
 
     [SerializeField]
+    int damage;
+
+    public int Damage
+    {
+        get { return damage; }
+    }
+
+    [SerializeField]
     LayerMask whatToCollideWith;
     [SerializeField]
     GameObject destroyEffect;
@@ -35,6 +43,7 @@ public class projectileController : MonoBehaviour
         if ((whatToCollideWith.value & (1 << collision.gameObject.layer)) > 0)
         {
             Instantiate(destroyEffect, transform.position, transform.rotation);
+            collision.gameObject.GetComponent<HealthController>().getHit(damage);
             Destroy(gameObject);
         }
     }

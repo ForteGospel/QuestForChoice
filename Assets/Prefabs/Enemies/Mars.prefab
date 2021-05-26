@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70bfd80d7cf22f644958eceadc560f92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 1
+  movementSpeed: 3
   enemyState: 0
   patrolingPoints: []
   destroyEffect: {fileID: 0}

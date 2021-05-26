@@ -27,10 +27,22 @@ public class Playermovment : MonoBehaviour
     LayerMask enemiesMask;
 
     [SerializeField]
+    LayerMask pitFallMask;
+
+    [SerializeField]
     LayerMask tokenMask;
 
     [SerializeField]
     playerStats playerStats;
+
+    [SerializeField]
+    GameEvent DeathEvent;
+
+    [SerializeField]
+    Vector2 lastGroundStanded;
+
+    float saveDelay = 0.5f;
+    float timePassed = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -41,10 +53,17 @@ public class Playermovment : MonoBehaviour
 
     private void Update()
     {
+        timePassed += Time.deltaTime;
         if (playerState == PlayerState.Playable)
         {
             if (Input.GetButtonDown("Jump") && Grounded == true)
                 Jump();
+        }
+
+        if (Grounded && timePassed > saveDelay)
+        {
+            lastGroundStanded = transform.position + Vector3.up;
+            timePassed = 0f;
         }   
     }
 
@@ -81,20 +100,28 @@ public class Playermovment : MonoBehaviour
     public void getHit(Transform other)
     {
         playerStats.health--;
-        if (playerStats.health != 0)
-        {
-            gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        if (playerStats.health == 0)
+            killPlayer();
 
-            Vector2 knockbackDirection = new Vector2(transform.position.x - other.position.x, 1f).normalized;
+        gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        Vector2 knockbackDirection = new Vector2(transform.position.x - other.position.x, 1f).normalized;
+        gameObject.GetComponent<Rigidbody2D>().AddForce(knockbackDirection * 5, ForceMode2D.Impulse);
+        StartCoroutine(knockBack());
+    }
 
-            gameObject.GetComponent<Rigidbody2D>().AddForce(knockbackDirection * 5, ForceMode2D.Impulse);
+    void respawn()
+    {
+        StartCoroutine(knockBack());
+        transform.position = lastGroundStanded;
+        playerStats.health--;
+        if (playerStats.health == 0)
+            killPlayer();
+    }
 
-            StartCoroutine(knockBack());
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+    void killPlayer()
+    {
+        Destroy(gameObject);
+        DeathEvent.Raise();
     }
 
     IEnumerator knockBack()
@@ -110,6 +137,7 @@ public class Playermovment : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
         playerState = PlayerState.Playable;
+        yield return new WaitForSeconds(1f);
         TriggerCollider.enabled = true;
     }
 
@@ -120,6 +148,9 @@ public class Playermovment : MonoBehaviour
 
         if ((tokenMask.value & (1 << collision.gameObject.layer)) > 0)
             collision.GetComponent<tokenController>().getToken();
+
+        if ((pitFallMask.value & (1 << collision.gameObject.layer)) > 0)
+            respawn();
     }
 }
 

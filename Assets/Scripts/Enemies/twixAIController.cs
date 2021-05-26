@@ -5,34 +5,28 @@ using UnityEngine;
 public class twixAIController : Enemy
 {
     [SerializeField] GameObject child;
-    [SerializeField] bool isKilledBool = false;
+    float alertedMovementSpeed;
+    float originalMovementSpeed;
     // Start is called before the first frame update
     void Start()
     {
-        
+        originalMovementSpeed = movementSpeed;
+        alertedMovementSpeed = movementSpeed + 100f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isKilledBool)
+        if (enemyState == EnemyStates.patroling)
         {
-            isKilled();
+            movementSpeed = originalMovementSpeed;
+            moveTowardsDestination();
+            flipSprite();
         }
         else
         {
-            if (enemyState == EnemyStates.patroling)
-            {
-                movementSpeed = 150f;
-                moveTowardsDestination();
-                flipSprite();
-            }
-            else
-            {
-                movementSpeed = 250f;
-                moveTowardsPlayer();
-            }
-            
+            movementSpeed = alertedMovementSpeed;
+            moveTowardsPlayer();
         }
     }
 

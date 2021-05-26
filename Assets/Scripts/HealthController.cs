@@ -29,6 +29,8 @@ public class HealthController : MonoBehaviour
         if (health <= 0)
         {
             Instantiate(deathEffect, transform.position, transform.rotation);
+            if (gameObject.GetComponent<twixAIController>() && !gameObject.GetComponent<ferreroAIController>())
+                gameObject.GetComponent<twixAIController>().isKilled();
             Destroy(gameObject);
         }
     }

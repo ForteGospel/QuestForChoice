@@ -58,6 +58,9 @@ public class Playermovment : MonoBehaviour
         {
             if (Input.GetButtonDown("Jump") && Grounded == true)
                 Jump();
+
+            if (Input.GetButtonUp("Jump") && gameObject.GetComponent<Rigidbody2D>().velocity.y > 0)
+                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(gameObject.GetComponent<Rigidbody2D>().velocity.x, gameObject.GetComponent<Rigidbody2D>().velocity.y * 0.5f);
         }
 
         if (Grounded && timePassed > saveDelay)

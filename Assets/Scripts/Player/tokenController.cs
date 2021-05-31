@@ -5,27 +5,17 @@ using UnityEngine;
 public class tokenController : MonoBehaviour
 {
     [SerializeField]
-    intVariableObject score;
+    intVariableObject invVariable;
 
     [SerializeField]
     int tokenValue = 100;
 
     [SerializeField]
     GameObject destroyEffect;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void getToken()
     {
-        score.Value += tokenValue;
+        invVariable.addValue(tokenValue);
         Instantiate(destroyEffect, transform.position, transform.rotation);
         Destroy(gameObject);
     }

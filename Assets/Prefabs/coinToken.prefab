@@ -121,6 +121,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f26fe1291ca9c3c418a1989abed63a2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: {fileID: 11400000, guid: fa8ab4c203b16874392a13e22b45281f, type: 2}
+  invVariable: {fileID: 11400000, guid: fa8ab4c203b16874392a13e22b45281f, type: 2}
   tokenValue: 100
   destroyEffect: {fileID: 180128, guid: 6586ff0f14125534cae2f5d8f04b7871, type: 3}

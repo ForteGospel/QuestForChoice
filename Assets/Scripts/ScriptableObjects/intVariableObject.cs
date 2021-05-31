@@ -8,10 +8,23 @@ public class intVariableObject : ScriptableObject, ISerializationCallbackReceive
     [SerializeField]
     int startValue;
 
+    [SerializeField]
+    int maxValue;
+
     public int Value
     {
         get { return value; }
-        set { value = Value; }
+    }
+
+    public void addValue(int num)
+    {
+        if (value + num <= maxValue || maxValue == 0)
+            value += num;
+    }
+
+    public void minusValue (int num)
+    {
+        value -= num;
     }
 
     public void OnAfterDeserialize()

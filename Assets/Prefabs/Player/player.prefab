@@ -290,7 +290,7 @@ MonoBehaviour:
   tokenMask:
     serializedVersion: 2
     m_Bits: 16384
-  playerStats: {fileID: 11400000, guid: a8604d9ee546fc642aaa2dad37f92539, type: 2}
+  healthObject: {fileID: 11400000, guid: 7af856192a4937448a32edb35fbd836a, type: 2}
   DeathEvent: {fileID: 11400000, guid: eb5abdb7b1ed15745aa19743c2269b96, type: 2}
   lastGroundStanded: {x: 0, y: 0}
 --- !u!1001 &3678863907803214567

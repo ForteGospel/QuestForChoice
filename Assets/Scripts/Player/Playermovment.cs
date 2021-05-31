@@ -33,7 +33,7 @@ public class Playermovment : MonoBehaviour
     LayerMask tokenMask;
 
     [SerializeField]
-    playerStats playerStats;
+    intVariableObject healthObject;
 
     [SerializeField]
     GameEvent DeathEvent;
@@ -47,8 +47,6 @@ public class Playermovment : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerStats.player = gameObject;
-        playerStats.health = 3;
     }
 
     private void Update()
@@ -102,8 +100,8 @@ public class Playermovment : MonoBehaviour
 
     public void getHit(Transform other)
     {
-        playerStats.health--;
-        if (playerStats.health == 0)
+        healthObject.minusValue(1);
+        if (healthObject.Value == 0)
             killPlayer();
 
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -116,8 +114,8 @@ public class Playermovment : MonoBehaviour
     {
         StartCoroutine(knockBack());
         transform.position = lastGroundStanded;
-        playerStats.health--;
-        if (playerStats.health == 0)
+        healthObject.minusValue(1);
+        if (healthObject.Value == 0)
             killPlayer();
     }
 
